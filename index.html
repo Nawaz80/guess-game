@@ -1,0 +1,79 @@
+<div class="game-card">
+  <h1>🎯 Guess the Number</h1>
+  <p>I'm thinking of a number between <strong>1 and 100</strong>.</p>
+  <div class="input-group">
+    <input type="number" id="guessInput" min="1" max="100" placeholder="e.g. 50">
+    <button id="guessBtn">Guess</button>
+  </div>
+  <div class="message" id="message">Enter a guess above to start!</div>
+</div>
+const secretNumber = Math.floor(Math.random() * 100) + if (userGuess === secretNumber) {
+  message.textContent = '🎉 Correct! You guessed the secret number!';
+} else if (userGuess < secretNumber) {
+  message.textContent = '📉 Too low! Try a higher number.';
+} else {
+  message.textContent = '📈 Too high! Try a lower number.';
+}
+guessBtn.addEventListener('click', checkGuess);
+let secretNumber = Math.floor(Math.random() * 100) + 1;
+let attempts = 0;
+attempts++;
+attemptsBadge.textContent = 'Attempts: ' + attempts;
+guessInput.disabled = true;
+guessBtn.disabled = true;
+resetBtn.style.display = 'inline-block';
+const previousGuesses = [];
+if (previousGuesses.includes(userGuess)) {
+  message.textContent = `You already tried ${userGuess}! Pick a different number.`;
+  return;
+}
+previousGuesses.push(userGuess);
+const pill = document.createElement('span');
+pill.className = `history-pill ${hintType}`;
+pill.textContent = `${guess} ${hintText}`;
+historyList.appendChild(pill);
+const savedBest = localStorage.getItem('guessGameBestScore');
+if (savedBest !== null) {
+  bestScore = Number(savedBest);
+  bestBadge.textContent = `Best: ${bestScore}`;
+}
+localStorage.setItem('guessGameBestScore', bestScore.toString());
+try {
+  localStorage.setItem('guessGameBestScore', bestScore.toString());
+} catch (e) {
+  console.warn('Could not save best score:', e);
+}
+if (bestScore === null || attempts < bestScore) {
+  bestScore = attempts;
+  bestBadge.textContent = `Best: ${bestScore}`;
+  victoryText += ' 🏆 New Personal Best!';
+}
+<button class="btn-diff" data-max="50">Easy (1–50)</button>
+<button class="btn-diff active" data-max="100">Medium (1–100)</button>
+<button class="btn-diff" data-max="500">Hard (1–500)</button>
+diffButtons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    diffButtons.forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    maxRange = Number(btn.dataset.max);
+    loadBestScore();
+    resetGame();
+  });
+});
+function getStorageKey() {
+  return `guessGameBestScore_${maxRange}`;
+}
+const difference = Math.abs(userGuess - secretNumber);
+const osc = audioCtx.createOscillator();
+const gain = audioCtx.createGain();
+osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+particles.push({
+  x: canvas.width / 2,
+  y: canvas.height * 0.45,
+  vx: (Math.random() - 0.5) * 14,
+  vy: (Math.random() - 0.7) * 16,
+  size: Math.random() * 8 + 4,
+  color: colors[Math.floor(Math.random() * colors.length)],
+  opacity: 1
+});
